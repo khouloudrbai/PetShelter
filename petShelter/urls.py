@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from adoption.views import PetsListView,AdoptPet
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('pets/', PetsListView.as_view(), name='pets-list'),
+    path('adopt/<str:pet_name>/', AdoptPet, name='adopt-pet'),
 ]

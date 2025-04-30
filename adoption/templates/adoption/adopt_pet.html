@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adopt {{ pet.name }}</title>
+</head>
+<body>
+    <h1>Adopt {{ pet.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="adopter_name">Your Name:</label>
+        <input type="text" name="adopter_name" required><br><br>
+
+        <label for="adoption_date">Adoption Date:</label>
+        <input type="date" name="adoption_date"><br><br>
+
+        <button type="submit">Confirm Adoption</button>
+    </form>
+</body>
+</html>
