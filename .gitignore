@@ -1,0 +1,20 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# VS Code settings
+.vscode/
+
+# Migrations (optional, keep if you want to track)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Django secret keys (if using a .env file)
+.env
