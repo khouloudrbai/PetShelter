@@ -1,7 +1,10 @@
+from django import views
 from django.contrib import admin
 from django.urls import path
-from .views import PetsListView,AdoptPet
+import adoption
+
 urlpatterns = [
-    path('pets/', PetsListView.as_view(), name='pets-list'),
-    path('adopt/<str:pet_name>/', AdoptPet, name='adopt-pet'),
+
+    path('adopt/', adoption.views.adoption_request, name='adopt'),
+    path('adoption-success/', views.adoption_success, name='adoption_success'),
     ]
