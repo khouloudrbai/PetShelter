@@ -12,7 +12,9 @@ class Pet(models.Model):
     species = models.CharField(max_length=30)
     age = models.IntegerField()
     available_for_adoption = models.BooleanField()
+    image=models.ImageField(upload_to='shelter_logo/',null=True,blank=True)
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
+    
     def __str__(self):
         return  self.name
 

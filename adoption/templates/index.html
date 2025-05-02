@@ -1,34 +1,36 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="codepixer">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Animal Shelter</title>
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+    {% load static %}
+    {% load crispy_forms_tags %}
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">
-			<link rel="stylesheet" href="css/main.css">
-		</head>
+    <head>
+        <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon-->
+        <link rel="shortcut icon" href="{% static 'cat-adoption-centre-template-master/img/fav.png' %}">
+        <!-- Author Meta -->
+        <meta name="author" content="codepixer">
+        <!-- Meta Description -->
+        <meta name="description" content="">
+        <!-- Meta Keyword -->
+        <meta name="keywords" content="">
+        <!-- meta character set -->
+        <meta charset="UTF-8">
+        <!-- Site Title -->
+        <title>Animal Shelter</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/linearicons.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/main.css' %}">
+    </head>
 		<body>
 			  <header id="header" id="home">
 			    <div class="container main-menu">
@@ -38,14 +40,14 @@
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about.html">About Us</a></li>
-				          <li><a href="cats.html">Cats</a></li>
-				          <li><a href="dogs.html">Dogs</a></li>
-				          <li><a href="volunteer.html">Volunteer</a></li>
-						  <li><a href="Adoption.html">Adoption</a></li>
+				          <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+
+				          <li><a href="{% url 'about' %}">About Us</a></li>
+				          <li><a href="{% url 'Pets' %}">Pets</a></li>
+				          <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
+						  <li><a href="{% url 'adopt' %}">Adoption</a></li>
   
-				          <li><a href="contact.html">Contact</a></li>
+				          <li><a href="{% url 'contact' %}">Contact</a></li>
 				  			              
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -66,7 +68,7 @@
 							<p class="text-white sub-head">
 								At Amour Paws, we believe every pet deserves a loving family.<b> Start your journey today—because every tail deserves a happy ending! 🐾</b>
 							</p>
-							<a href="volunteer.html" class="primary-btn header-btn text-uppercase">Find a pet to adopt</a>
+							<a href="{% url 'adopt' %}" class="primary-btn header-btn text-uppercase">Find a pet to adopt</a>
 						</div>											
 					</div>
 				</div>
@@ -129,7 +131,7 @@
 							<h1>Please select your favourite pet</h1>
 						</div>
 						<div class="col-lg-4 callto-top-right">
-							<a href="Adoption.html" class="primary-btn">Fill Adoption Form</a>
+							<a href="{% url 'adopt' %}"  class="primary-btn">Fill Adoption Form</a>
 						</div>							
 					</div>
 				</div>	
@@ -156,7 +158,7 @@
 								these furry friends by our side.
 							</h5>
 							
-							<a href="about.html" class="primary-btn text-uppercase">get details</a>
+							<a href="{% url 'about' %}" class="primary-btn text-uppercase">get details</a>
 						</div>
 					</div>
 				</div>	
@@ -276,7 +278,7 @@
 					<div class="row align-items-center justify-content-center">
 						<h1 class="text-white">Want to help? Become a Volunteer</h1>
 						<div class="buttons d-flex flex-row">
-							<a href="volunteer.html" class="primary-btn text-uppercase">Register now</a>
+							<a href="{% url 'volunteer' %}"  class="primary-btn text-uppercase">Register now</a>
 						</div>
 					</div>
 				</div>	
@@ -360,18 +362,19 @@ Copyright &copy;
 			</footer>
 			<!-- End footer Area -->	
 
-			<script src="js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="js/easing.min.js"></script>			
-			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
-			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>	
-			<script src="js/owl.carousel.min.js"></script>						
-			<script src="js/jquery.nice-select.min.js"></script>							
-			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
+			<script src="{% static 'cat-adoption-centre-template-master/js/vendor/jquery-2.2.4.min.js' %}"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+				integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+				crossorigin="anonymous"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/vendor/bootstrap.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/easing.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/hoverIntent.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/superfish.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/jquery.ajaxchimp.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/jquery.magnific-popup.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/owl.carousel.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/jquery.nice-select.min.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/mail-script.js' %}"></script>
+			<script src="{% static 'cat-adoption-centre-template-master/js/main.js' %}"></script>
 		</body>
 	</html>

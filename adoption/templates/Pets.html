@@ -1,34 +1,36 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="codepixer">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Animal Shelter</title>
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+    {% load static %}
+    {% load crispy_forms_tags %}
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">
-			<link rel="stylesheet" href="css/main.css">
-		</head>
+    <head>
+        <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon-->
+        <link rel="shortcut icon" href="{% static 'cat-adoption-centre-template-master/img/fav.png' %}">
+        <!-- Author Meta -->
+        <meta name="author" content="codepixer">
+        <!-- Meta Description -->
+        <meta name="description" content="">
+        <!-- Meta Keyword -->
+        <meta name="keywords" content="">
+        <!-- meta character set -->
+        <meta charset="UTF-8">
+        <!-- Site Title -->
+        <title>Animal Shelter</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/linearicons.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'cat-adoption-centre-template-master/css/main.css' %}">
+    </head>
 		<body>
 			  <header id="header" id="home">
 			    <div class="container main-menu">
@@ -37,17 +39,16 @@
 				        <h2 style="color: beige;">Amour Paws</h2>
 				      </div>
 				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about.html">About Us</a></li>
-				          <li><a href="cats.html">Cats</a></li>
-				          <li><a href="dogs.html">Dogs</a></li>
-				          <li><a href="volunteer.html">Volunteer</a></li>	
-						  <li><a href="Adoption.html">Adoption</a></li>
-				          
-				          <li><a href="contact.html">Contact</a></li>
-							              
-				        </ul>
+						<ul class="nav-menu">
+							<li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+							  <li><a href="{% url 'about' %}">About Us</a></li>
+							  <li><a href="{% url 'Pets' %}">Pets</a></li>
+							  <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
+							  <li><a href="{% url 'adopt' %}">Adoption</a></li>
+	  
+							  <li><a href="{% url 'contact' %}">Contact</a></li>
+												
+							</ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
 			    </div>
@@ -70,97 +71,53 @@
 			<!-- End banner Area -->	
 				
 			<!-- Start cat-list Area -->
+		<!-- Start cat-list Area -->
 			<section class="cat-list-area section-gap">
 				<div class="container">
 					<div class="row">
+						{% for pet in pets %}
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct1.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
+								{% if pet.image %}
+								<img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="img-fluid">
+								{% else %}
+									<img src="{% static 'img/default-cat.jpg' %}" alt="{{ pet.name }}" class="img-fluid">
+								{% endif %}
+								<div class="overlay">
+									<div class="text">{{ pet.name }} ({{ pet.species }})</div>
+									<button onclick="openModal('{{ pet.id }}')" 		
+											style="position: absolute; bottom: 15px; right: 15px; background-color: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; text-decoration: none;">
+									Details</button>
+
+							</div>
+							 <!-- Modal per pet -->
+							 <div id="modal-{{ pet.id }}" class="modal" style="display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+								<div style="position: relative; background: white; margin: 10% auto; padding: 20px; border-radius: 10px; max-width: 400px;">
+									<span onclick="closeModal('{{ pet.id }}')" style="float: right; font-size: 24px; cursor: pointer;">&times;</span>
+									<h3>{{ pet.name }}</h3>
+									<p><strong>Species:</strong> {{ pet.species }}</p>
+									<p><strong>Age:</strong> {{ pet.age }}</p>
+									<p><strong>Shelter:</strong> {{ pet.shelter }}</p>
+								
+									<a href="{% url 'adopt_pet' pet.id %}" 
+									style="position: absolute; bottom: 15px; right: 15px; background-color: rgba(0, 123, 255, 0.8); color: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; text-decoration: none;">
+										Adopt
+									</a>
+								</div>
+								
+							</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct2.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct3.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct4.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>	
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct5.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct6.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct7.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-cat-list">
-							  <img src="img/ct8.jpg" alt="" class="img-fluid">
-							  <div class="overlay">
-							    <div class="text">Siamese Cat</div>
-							  </div>
-							</div>
-						</div>												
+						{% endfor %}
 					</div>
-				</div>	
+				</div>
 			</section>
+<!-- End cat-list Area -->
+
 			<!-- End cat-list Area -->
 					
 
-			<!-- Start calltoaction Area -->
-			<section class="calltoaction-area section-gap relative">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>						
-					<div class="row align-items-center justify-content-center">
-						<h1 class="text-white">Want to help? Become a Volunteer</h1>
-						<p class="text-white">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-						</p>
-						<div class="buttons d-flex flex-row">
-							<a href="#" class="primary-btn text-uppercase">View pdf details</a>
-							<a href="#" class="primary-btn text-uppercase">Register now</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End calltoaction Area -->													
+			
 				
 			<!-- start footer Area -->		
 			<footer class="footer-area">
@@ -252,5 +209,23 @@ Copyright &copy;
 			<script src="js/jquery.nice-select.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
 			<script src="js/main.js"></script>	
+			<script>
+				function openModal(petId) {
+					document.getElementById('modal-' + petId).style.display = 'block';
+				}
+			
+				function closeModal(petId) {
+					document.getElementById('modal-' + petId).style.display = 'none';
+				}
+			
+				window.onclick = function(event) {
+					document.querySelectorAll('.modal').forEach(modal => {
+						if (event.target === modal) {
+							modal.style.display = "none";
+						}
+					});
+				}
+			</script>
+			
 		</body>
 	</html>

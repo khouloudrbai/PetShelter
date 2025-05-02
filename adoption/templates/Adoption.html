@@ -40,15 +40,15 @@
                   </div>
                   <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                      <li class="menu-active"><a href="index.html">Home</a></li>
-                      <li><a href="about.html">About Us</a></li>
-                      <li><a href="cats.html">Cats</a></li>
-                      <li><a href="dogs.html">Dogs</a></li>
-                      <li><a href="volunteer.html">Volunteer</a></li>
-                      <li><a href="Adoption.html">Adoption</a></li>
-
-                      <li><a href="contact.html">Contact</a></li>			              
-                    </ul>
+				        <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+				          <li><a href="{% url 'about' %}">About Us</a></li>
+				          <li><a href="{% url 'Pets' %}">Pets</a></li>
+				          <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
+						  <li><a href="{% url 'adopt' %}">Adoption</a></li>
+  
+				          <li><a href="{% url 'contact' %}">Contact</a></li>
+				  			              
+				        </ul>
                   </nav><!-- #nav-menu-container -->		    		
                 </div>
             </div>
