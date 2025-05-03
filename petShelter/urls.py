@@ -34,6 +34,7 @@ urlpatterns = (
     path('pets/', adoption.views.Pets, name='Pets'),
     path('volunteer/', adoption.views.volunteer, name='volunteer'),
     path('contact/', adoption.views.contact, name='contact'),
+    path('submit-note/', adoption.views.submit_note, name='submit_note'),
 
     path('adoption-success/', adoption.views.adoption_success, name='adoption_success'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

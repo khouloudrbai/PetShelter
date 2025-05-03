@@ -46,7 +46,7 @@
 							  <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
 							  <li><a href="{% url 'adopt' %}">Adoption</a></li>
 	  
-							  <li><a href="{% url 'contact' %}">Contact</a></li>
+							  <li><a href="{% url 'contact' %}">Note</a></li>
 												
 							</ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -61,9 +61,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Cats				
+								Pets				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="cats.html"> Cats</a></p>
+							<p class="text-white link-nav"><a href="{% url 'home' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'Pets' %}"> Pets</a></p>
 						</div>	
 					</div>
 				</div>

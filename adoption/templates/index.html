@@ -47,7 +47,7 @@
 				          <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
 						  <li><a href="{% url 'adopt' %}">Adoption</a></li>
   
-				          <li><a href="{% url 'contact' %}">Contact</a></li>
+				          <li><a href="{% url 'contact' %}">Note</a></li>
 				  			              
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -68,58 +68,48 @@
 							<p class="text-white sub-head">
 								At Amour Paws, we believe every pet deserves a loving family.<b> Start your journey today—because every tail deserves a happy ending! 🐾</b>
 							</p>
-							<a href="{% url 'adopt' %}" class="primary-btn header-btn text-uppercase">Find a pet to adopt</a>
+							<a href="{% url 'Pets' %}" class="primary-btn header-btn text-uppercase">Find a pet to adopt</a>
 						</div>											
 					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->
 
-			<!-- Start image-carusel Area -->
-			<section class="image-carusel-area">
-				<div class="container">
-					<div class="row">
-						<div class="active-image-carusel">
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c1.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c2.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c3.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c4.jpg" alt="">
-							</div>	
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c1.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c2.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c3.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c4.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c1.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c2.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c3.jpg" alt="">
-							</div>
-							<div class="single-image-carusel">
-								<img class="img-fluid" src="img/c4.jpg" alt="">
-							</div>															
-						</div>
-					</div>
-				</div>	
-			</section>
+			<!-- Start image-carousel Area -->
+<section class="image-carusel-area">
+    <div class="container">
+        <div class="row">
+            <div class="active-image-carusel owl-carousel">
+                <div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c1.jpg' %}" alt="">
+                </div>
+                <div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c2.jpg' %}" alt="">
+                </div>
+                <div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c3.jpg' %}" alt="">
+                </div>
+                <div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c4.jpg' %}" alt="">
+                </div>
+				<div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c1.jpg' %}" alt="">
+                </div>
+				<div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c2.jpg' %}" alt="">
+                </div>
+				<div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c3.jpg' %}" alt="">
+                </div>
+				<div class="single-image-carusel">
+                    <img class="img-fluid" src="{% static 'cat-adoption-centre-template-master/img/c4.jpg' %}" alt="">
+                </div>
+                <!-- Repeat images as needed -->
+            </div>
+        </div>
+    </div>
+</section>
+
 			<!-- End image-carusel Area -->
 			
 
@@ -144,7 +134,7 @@
 				<div class="container-fluid">
 					<div class="row align-items-center">	
 						<div class="col-lg-6 home-about-left no-padding">
-							<img src="img/about-img.jpg" alt="">
+							<img src="{% static 'cat-adoption-centre-template-master/img/about-img.jpg' %}" alt="">
 						</div>
 						<div class="col-lg-6 home-about-right no-padding">
 							<h1>
@@ -184,91 +174,18 @@
 					</div>						
 					<div class="row">
 						<div class="active-testimonial-carusel">
+							{% for note in notes %}
 							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
+								<p class="desc">{{ note.message }}</p>
+								<h4>{{ note.name }}</h4>
+								<p>{{ note.subject }}</p>
 							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>	
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>															
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>
-							<div class="single-testimonial item">
-								<p class="desc">
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
-								</p>
-								<h4>Mark Alviro Wiens</h4>
-								<p>
-									CEO at Google
-								</p>
-							</div>														
+							{% endfor %}
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
+					
 			<!-- End testomial Area -->						
 
 			<!-- Start calltoaction Area -->
